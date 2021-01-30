@@ -175,169 +175,19 @@
         <h1 id="视频应用"><a href="#视频应用" class="headerlink" title="视频应用"></a>视频应用</h1><br>
 
 <h3 id="视频编码"><a href="#视频编码" class="headerlink" title="视频编码"></a>视频编码</h3><ul>
-<li><p><strong>压缩</strong></p>
-<ul>
-<li><p><strong>为什么要压缩？</strong></p>
-<ul>
+<li><strong>压缩</strong><ul>
+<li><strong>为什么要压缩？</strong><ul>
 <li>未经压缩的数字视频的数据量==巨大==</li>
 <li>存储困难</li>
 <li>传输困难</li>
 </ul>
 </li>
-<li><p><strong>为什么可以压缩？</strong></p>
-<ul>
-<li><p>去除冗余信息</p>
-<ul>
-<li><p>空间冗余: 图像相邻像素之间有较强的相关性</p>
-</li>
-<li><p>时间冗余: 视频序列的相邻图像之间内容相似</p>
-</li>
-<li><p>编码冗余: 不同像素值出现的概率不同</p>
-</li>
-<li><p>视觉冗余: 人的视觉系统对某些细节不敏感</p>
-</li>
-<li><p>知识冗余: 规律性的结构可由先验知识和背景知识得到</p>
-<pre><code>   针对这些不同类型的冗余信息，在各种视频编码的标准算法中都有不同的技术专门应对，
-   以通过不同的角度提高压缩的比率。</code></pre>
-</li>
 </ul>
 </li>
 </ul>
-</li>
-<li><p><strong>数据压缩分类</strong></p>
-<ul>
-<li><p>无损压缩(Lossless)</p>
-<ul>
-<li>压缩前解压缩后图像完全一致 <strong>X=X’</strong></li>
-<li>压缩比低(2:1~3:1)</li>
-<li>例如: <ul>
-<li>JPEG-LS(一种对连续色调图像的无损或者近无损的压缩标准)</li>
-<li>Winzip</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>有损压缩(Lossy)</p>
-<ul>
-<li><p>压缩前解压缩后图像不一致 <strong>X≠X’</strong></p>
-</li>
-<li><p>压缩比高(10:1~20:1)</p>
-</li>
-<li><p>利用人的视觉系统的特性</p>
-</li>
-<li><p>例如:MPEG-2，H.264/AVC，AVS</p>
-<p>   <strong>AVS与MPEG-2、MPEG-4 AVC/H.264使用的技术对比和性能差异估计</strong></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>|视频编码标准|MPEG-2视频|MPEG-4 AVC/H.264视频|AVS视频|AVS视频与AVC/H.264性能差异估计（采用信噪比dB估算,括号内的百分比为码率差异）|<br>|–|–|–|–|–|–|–|–|–|<br>|帧内预测|只在频域内进行DC系数差分预测|基于4×4块，9种亮度预测模式，4种色度预测模式|基于8×8块，5种亮度预测模式，4种色度预测模式|基本相当|<br>|多参考帧预测|只有1帧|最多16帧|最多2帧|都采用两帧时相当，帧数增加性能提高不明显|<br>|变块大小运动补偿|16×16，16×8(场编码)|16×16、16×8、8×16、8×8、8×4、4×8、4×4|16×16、16×8、8×16、8×8|降低约0.1dB(2-4%)|<br>|B帧宏块直接编码模式|无|独立的空域或时域预测模式，若后向参考帧中用于导出运动矢量的块为帧内编码时只是视其运动矢量为0，依然用于预测|时域空域相结合，当时域内后向参考帧中用于导出运动矢量的块为帧内编码时，使用空域相邻块的运动矢量进行预测|提高0.2-0.3dB(5%)|<br>|B帧宏块双向预测模式|编码前后两个运动矢量|编码前后两个运动矢量|称为对称预测模式，只编码一个前向运动矢量，后向运动矢量由前向导出|基本相当|<br>|熵编码|单一VLC表，适应性差|CAVLC：与周围块相关性高，实现较复杂CABAC：计算较复杂|上下文自适应2D-VLC，编码块系数过程中进行多码表切换|降低约0.5dB(10-15%)|<br>|环路滤波|无|基于4×4块边缘进行，滤波强度分类繁多，计算复杂|基于8×8块边缘进行，简单的滤波强度分类，滤波较少的像素，计算复杂度低|——|<br>|容错编码|简单的条带划分|数据分割、复杂的FMO/ASO等宏块、条带组织机制、强制Intra块刷新编码、约束性帧内预测等|简单的条带划分机制足以满足广播应用中的错误隐藏、恢复需求|——|<br>    DCT（Discrete Cosine Transform）：离散余弦变换<br>    VLC（Variable Length Coding）：变长编码<br>    CAVLC（Context-based Adaptive Variable Length Coding）：基于上下文的自适应变长码<br>    CABAC（Context-based Adaptive Binary Arithmetic Coding）：基于上下文的自适应二进制算术编码<br>    FMO（Flexible Macroblock Ordering）：灵活的宏块排序<br>    ASO（Arbitrary Slice Ordering）：任意条带排列</p>
-<br>
-#### 视频格式
-
-<pre><code>数字视频有时间分辨率、空间分辨率、色彩空间、量化深度等参数，这些参数的组合称为视频格式</code></pre>
-<ul>
-<li><p><strong>时间</strong>——帧率（frame per second）——流畅</p>
-</li>
-<li><p><strong>空间</strong>——分辨率——清晰</p>
-</li>
-<li><p><strong>色彩空间</strong></p>
-<ul>
-<li><p><strong>RGB颜色空间</strong></p>
-<pre><code>   RGB（红绿蓝）是依据人眼识别的颜色定义出的空间，可表示大部分颜色。
-   但在科学研究一般不采用RGB颜色空间，因为它的细节难以进行数字化的调整。
-   它将色调，亮度，饱和度三个量放在一起表示，很难分开。
-   它是最通用的面向硬件的彩色模型。该模型用于彩色监视器和一大类彩色视频摄像。</code></pre>
-</li>
-<li><p><strong>YUV颜色空间</strong></p>
-<pre><code>   在 YUV空间中，每一个颜色有一个亮度信号 Y，和两个色度信号 U 和V。
-   亮度信号是强度的感觉，它和色度信号断开，这样的话强度就可以在不影响颜色的情况下改变。
-   视频通信系统之所以要采用YUV，而不是RGB，主要是因为RGB信号不利于压缩。
-   在YUV这种方式里面，加入了亮度这一概念。眼睛对于亮和暗的分辨要比对颜色的分辨更精细一些，
-   人眼对色度的敏感程度要低于对亮度的敏感程度。</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<p>　　所以，工程师认为，在我们的视频存储中，没有必要存储全部颜色信号。我们可以把更多带宽留给黑—白信号(被称作“亮度”)，将稍少的带宽留给彩色信号(被称作“色度”)。于是，就有了YUV。</p>
-<p>　　YUV里面的“Y”，就是亮度(Luma)，“U”和“V”则是色度(Chroma)</p>
-<ul>
-<li><p><strong>YCbCr颜色空间</strong></p>
-<pre><code>   YCbCr 是在世界数字组织视频标准研制过程中作为ITU-RBT1601建议的一部分,其实是YUV经过缩放和偏移的翻版。
-   其中Y与YUV中的Y含义一致,Cb,Cr同样都指色彩, 只是在表示方法上不同而已。
-   在YUV家族中,YCbCr是在计算机系统中应用最多的成员,其应用领域很广泛,
-    JPEG、MPEG均采用此格式。</code></pre>
-<p> ==Y表示亮度，CbCr表示颜色。怎么表示颜色，可以看下面这幅坐标图==</p>
-<img src="https://img-blog.csdn.net/2018060814490518?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FzYWhpbm9rYXdh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width = "300" height = "300"  />
-<br>
- ==Y要如何表示亮度呢，下面是Y在不同的情况下的表现==
-<img src="https://img-blog.csdn.net/20180608145023493?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FzYWhpbm9rYXdh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width = "600" height = "200"  />
-![]() 
-- 存储方式
-==以黑点表示采样该像素点的Y分量，以空心圆圈表示采用该像素点的UV分量==
-<img src="https://img-blog.csdn.net/20180608151925122?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2FzYWhpbm9rYXdh/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" width = "660" height = "200"  />
-    - YUV 4:4:4采样，每一个Y对应一组UV分量。
-    - YUV 4:2:2采样，每两个Y共用一组UV分量。
-    - YUV 4:2:0采样，每四个Y共用一组UV分量。
-<br></li>
-<li><p><strong>量化深度</strong>——精确</p>
-<pre><code> 像素每一分量的数值对应的量化等级为量化深度，量化深度越大，像素值可以越精确。
- 8 bit
- 10bit</code></pre>
-<ul>
-<li><p>10bit的视频记录更精确的色彩，比如我们平时用的rgb 每个通道8bit，那么每个颜色分量就0~255，只有256个，而10bit就有1024个。实际体验上，更细致的颜色分级意味着渐变色更细腻</p>
-<pre><code>  视频的10bit的压制。
-  可以在保持高画质的前提下大大提升压缩效率，10bit压制主要是通过提升编码的精度，
-  从而在有损压缩时可以采用更高的量化值，同时保持十分好的质量，
-  于是可以在比8bit压制更低的码率下还原出更好的画面。
-  10bit在更高的精度冗余下可以在有损编码时有更高的效率。
-  具体对于画质有利的方面主要在于：
-  1.防止banding（色彩平滑过渡区域的色带）产生
-  2 提升暗场效果
-  3.更好地容纳噪点
-  而这几项正好都是现在8bit压制中很难处理的地方。特别是对于动画，
-  banding是个及其麻烦的东西。暗场是十分容易码率分配不足，并且产生画面劣化的部分。
-  而噪点则是十分消耗码率。10bit下这些困难的东西都变得容易处理了。
-  目前所使用的10bit压制是作用于内部的编码精度，而不是输出精度。</code></pre>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="视频编码原理"><a href="#视频编码原理" class="headerlink" title="视频编码原理"></a>视频编码原理</h4><ul>
-<li>冗余编码技术<img src="https://www.easemob.com/data/upload/ueditor/20191121/5dd62e0bd14a3.jpg">
-<br>
-<img src="https://www.easemob.com/data/upload/ueditor/20191121/5dd62e0c0cb08.jpg">
-视频编码技术优先消除的目标，就是空间冗余和时间冗余。
-<br></li>
-<li>视频是由不同的帧画面连续播放形成的。这些帧，主要分为三类，分别是：<ul>
-<li><strong>I帧</strong>：是自带全部信息的独立帧，是最完整的画面(占用的空间最大)，无需参考其它图像便可独立进行解码。视频序列中的第一个帧，始终都是I帧。<br></li>
-<li><strong>B帧</strong>：“双向预测编码帧”，以前帧后帧作为参考帧。不仅参考前面，还参考后面的帧，所以，它的压缩率最高，可以达到200:1。不过，因为依赖后面的帧，所以不适合实时传输(例如视频会议)。<img src="https://www.easemob.com/data/upload/ueditor/20191121/5dd62e0cb81b8.jpg">
-<br></li>
-<li><strong>P帧</strong>：“帧间预测编码帧”，需要参考前面的I帧和/或P帧的不同部分，才能进行编码。P帧对前面的P和I参考帧有依赖性。但是，P帧压缩率比较高，占用的空间较小。<img src="https://www.easemob.com/data/upload/ueditor/20191121/5dd62e0c74ff8.jpg">
-<br>
-  ==时间冗余（帧间预测）== 
-<br>
-  ==空间冗余（帧内预测）==
-<br>
-
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="视频数据的封装"><a href="#视频数据的封装" class="headerlink" title="视频数据的封装"></a>视频数据的封装</h4><pre><code>　　对于任何一部视频来说，只有图像，没有声音，肯定是不行的。所以，视频编码后，加上音频编码，要一起进行封装。
-
-　　封装：就是封装格式，简单来说，就是将已经编码压缩好的视频轨和音频轨按照一定的格式放到一个文件中。
-    再通俗点，视频轨相当于饭，而音频轨相当于菜，封装格式就是一个饭盒，用来盛放饭菜的容器。
-
-　　目前主要的视频容器有如下：MPG、VOB、MP4、3GP、ASF、RMVB、WMV、MOV、Divx、MKV、FLV、TS/PS等。
-
-　　封装之后的视频，就可以传输了，你也可以通过视频播放器进行解码观看。</code></pre>
-<p>　</p>
-
+        
+          <a class="article-more-a" href="/2021/01/30/%E8%A7%86%E9%A2%91%E7%BC%96%E7%A0%81/#more">more >></a>
+        
       
 
       
