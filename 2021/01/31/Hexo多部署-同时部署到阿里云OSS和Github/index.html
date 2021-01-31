@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      304 字
+      458 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        分钟
     </span>
   
@@ -289,29 +289,63 @@ img {
 </tr>
 </tbody></table>
 </li>
+<li><p>进入创建好的Bucket，点击基础设置，设置静态页面的默认首页为 index.html</p>
+</li>
 </ul>
-<h3 id="设置AccessKey"><a href="#设置AccessKey" class="headerlink" title="设置AccessKey"></a>设置AccessKey</h3><ul>
+<h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><h3 id="设置AccessKey"><a href="#设置AccessKey" class="headerlink" title="设置AccessKey"></a>设置AccessKey</h3><ul>
 <li><p><strong>在网页右上角点击AccessKey管理</strong></p>
 <img src="https://img.imgdb.cn/item/601676893ffa7d37b34d4281.jpg" srcset="/img/loading.gif">
 </li>
 <li><p><strong>创建子用户然后添加权限</strong></p>
 <ul>
-<li>创建子用户<img src="https://img.imgdb.cn/item/601678e33ffa7d37b34e1bb7.jpg" srcset="/img/loading.gif"><img src="https://img.imgdb.cn/item/601678fe3ffa7d37b34e2832.jpg" srcset="/img/loading.gif"></li>
+<li>创建子用户<img src="https://img.imgdb.cn/item/601678e33ffa7d37b34e1bb7.jpg" srcset="/img/loading.gif"></li>
+<li>勾选编程访问<img src="https://img.imgdb.cn/item/601678fe3ffa7d37b34e2832.jpg" srcset="/img/loading.gif"></li>
 <li>添加权限<img src="https://img.imgdb.cn/item/601677473ffa7d37b34d8252.jpg" srcset="/img/loading.gif">
-<p class="note note-warning">
-</li>
-</ul>
-</li>
-<li><p><strong>选择管理对象存储服务(OSS)权限</strong></p>
-  <img src="https://img.imgdb.cn/item/601677d03ffa7d37b34dab91.jpg" srcset="/img/loading.gif">
-</P>
-</li>
-<li><p><strong>进入用户，创建AccessKey</strong></p>
- <img src="https://img.imgdb.cn/item/601678a63ffa7d37b34dff70.jpg" srcset="/img/loading.gif">
- 复制生成好的
+
 
 </li>
 </ul>
+</li>
+</ul>
+<ul>
+<li><strong>选择管理对象存储服务(OSS)权限</strong>  <img src="https://img.imgdb.cn/item/601677d03ffa7d37b34dab91.jpg" srcset="/img/loading.gif">
+
+
+</li>
+</ul>
+<ul>
+<li><strong>进入用户，创建AccessKey</strong> <img src="https://img.imgdb.cn/item/601678a63ffa7d37b34dff70.jpg" srcset="/img/loading.gif">
+ <p class="note note-warning">复制生成好的AccessKey ID 和 AccessKey Secret</p>
+
+</li>
+</ul>
+<h3 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h3><ul>
+<li><p><strong>在hexo的目录下执行：</strong></p>
+<pre><code>  npm install hexo-deployer-ali-oss --save</code></pre>
+</li>
+<li><p><strong>在hexo_config.yml文件中部署配置</strong></p>
+</li>
+</ul>
+<p class="note note-warning">单部署器</p>
+
+<pre><code>    deploy:
+    type: ali-oss
+    region: &lt;您的oss 区域代码&gt;
+    accessKeyId: &lt;您的oss  accessKeyId&gt;
+    accessKeySecret: &lt;您的oss accessKeySecret&gt;
+    bucket: &lt;您的bucket name&gt;</code></pre>
+<p class="note note-warning">多部署器</p>
+
+<img src="https://img.imgdb.cn/item/60167c6e3ffa7d37b34f5acc.jpg" srcset="/img/loading.gif">
+
+
+
+<br>
+
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment">hexo官方文档对部署器配置的解释</a></li>
+</ul>
+<h2 id="完成部署"><a href="#完成部署" class="headerlink" title="完成部署"></a>完成部署</h2><p>全部部署完成后，即可通过 hexo g 将博客同时推送至OSS和Github</p>
 
             </div>
             <hr>
